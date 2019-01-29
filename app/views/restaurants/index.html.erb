@@ -10,7 +10,7 @@
       <th>User</th>
       <th>Address</th>
       <th>Telephone</th>
-      
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -19,12 +19,23 @@
       <tr>
         <td><%= restaurant.title %></td>
         <td><%= restaurant.description %></td>
-        <td><%= restaurant.user %></td>
+        <td><%= restaurant.User.username %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.telephone %></td>
+<% if logged? && admin? %>
+
         <td><%= link_to 'Show', restaurant %></td>
-        
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+<td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+<% elsif  logged?  && nameRes(restaurant) %>
+<td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+<td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% else %>
+<% end %>
+
       </tr>
+
     <% end %>
   </tbody>
 </table>
@@ -33,100 +44,15 @@
 
 
 #if logged in and restaurant teu
-if logged?
-<h1>Restaurants</h1>
+<% if logged? %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Address</th>
-      <th>Telephone</th>
-     
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.title %></td>
-        <td><%= restaurant.description %></td>
-        <td><%= restaurant.user %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.telephone %></td>       
-      </tr>
-  
 <%= link_to 'New Restaurant', new_restaurant_path %>
-<td><%= link_to 'Show', restaurant %></td>
-<td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-<td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% end %>
-</tbody>
-</table>
-    end
-#if logged in i no restaurant
-
-<h1>Restaurants</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Address</th>
-      <th>Telephone</th>
-     
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.title %></td>
-        <td><%= restaurant.description %></td>
-        <td><%= restaurant.user %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.telephone %></td>       
-      </tr>
+<% else %>
   
-<td><%= link_to 'Show', restaurant %></td>
 <% end %>
-</tbody>
-</table>
 
-#if admin
+<%= link_to 'Go to users', users_path %>
+<%= link_to 'Go to comments', comments_path %>
 
 
-<h1>Restaurants</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Address</th>
-      <th>Telephone</th>
-     
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.title %></td>
-        <td><%= restaurant.description %></td>
-        <td><%= restaurant.user %></td>
-        <td><%= restaurant.address %></td>
-        <td><%= restaurant.telephone %></td>        
-      </tr>
    
-<td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-<td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-<% end %>
-</tbody>
-</table>

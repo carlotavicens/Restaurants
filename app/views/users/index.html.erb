@@ -1,51 +1,20 @@
 <p id="notice"><%= notice %></p>
-#if admin
-<h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Password</th>
-      <th>Username</th>
-      <th>Admin</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= user.username %></td>
-        <td><%= user.admin %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-#if logged in
 
 <h1> Users </h1>
-
-if logged?
   <table>
     <thead>
       <tr>
         <th>Email</th>
         <th>Password</th>
         <th>Username</th>
-        <th>Admin</th>
+        
         <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
+
     <% @users.each do |user| %>
+  <% if logged? && admin? %>
       <tr>
   <td><%= user.email %></td>
   <td><%= user.password %></td>
@@ -54,10 +23,26 @@ if logged?
   <td><%= link_to 'Edit', edit_user_path(user) %></td>
   <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+
+
+
+  <% elsif logged? && name(user) %>
+  <tr>
+  <td><%= user.email %></td>
+  <td><%= user.password %></td>
+  <td><%= user.username %></td>
+  <td><%= link_to 'Show', user %></td>
+  <td><%= link_to 'Edit', edit_user_path(user) %></td>
+  <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+  </tr>
   <% end %>
   </tbody>
   </table>
 
-end
 
-#<%= link_to 'New User', new_user_path %>
+
+
+<%= link_to 'New User', new_user_path %>
+<%= link_to 'Go to restaurants', restaurants_path %>
+<%= link_to 'Go to comments', comments_path %>
