@@ -5,7 +5,8 @@ class CreateComments < ActiveRecord::Migration[5.1]
       t.text :text
       t.integer :score
       t.references :user, foreign_key: true
-
+      t.references :Restaurant, foreign_key: true
+      
       t.timestamps
     end
   end

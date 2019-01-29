@@ -9,6 +9,7 @@
       <th>Text</th>
       <th>Score</th>
       <th>User</th>
+      <th>Restaurant</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,8 +20,8 @@
     <td><%= comment.title %></td>
     <td><%= comment.text %></td>
     <td><%= comment.score %></td>
-    <td><%= comment.User.username %></td>
-    <td><%= comment.Restaurant.title %></td>
+    <td><%= comment.user.username %></td>
+    <td><%= comment.restaurant.title %></td>
     <% if logged? && admin? %>
       <td><%= link_to 'Show', comment %></td>
       <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
