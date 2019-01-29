@@ -25,23 +25,29 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    #render plain: @user.inspect
-    if @user.save   
-      session[:user_id]= @user.id
-      #redirect_to restaurants_path
-      redirect_to new_session_path
+    respond_to do |format|
+    if @user.save
+      format.html { redirect_to @user, notice: 'User was successfully created.' }
+      format.json { render :show, status: :created, location: @user }
     else
-      render :new 
+      format.html { render :new }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
     end
   end
+end
+
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if @user.update(email: 'user_updated@test.com')
-      render plain: @user.inspect
-    else
-      render plain: @user.inspect
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -63,6 +69,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :username, :admin)
+      params.require(:user).permit(:email, :password, :username)
     end
 end

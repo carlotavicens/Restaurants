@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :session, only: [:new]
-  post 'session/create' => 'session#create', as: :sessions_create
-  delete 'session/destroy' => 'session#destroy', as: :sessions_destroy
+  resources :sessions, only: [:new]
+  post 'sessions/create' => 'sessions#create', as: :session_create
+  delete 'sessions/destroy' => 'sessions#destroy', as: :session_destroy
   
 end

@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
+  protect_from_forgery
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.order('score DESC')
   end
 
   # GET /comments/1
@@ -25,6 +26,11 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment = Comment.new(comment_params)
+    @usuari = User.find_by_username(session[:username])
+    @restaurant = Restaurant.find_by_title(session[:restaurant])
+    @comment.User = @usuari
+    @comment.Restaurant = @restaurant
 
     respond_to do |format|
       if @comment.save
@@ -69,6 +75,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:title, :text, :score, :user_id)
+      params.require(:comment).permit(:title, :text, :score)
     end
 end

@@ -1,12 +1,15 @@
-<% provide(:title, "Log in") %>
+<h1>Sessions#new</h1>
 <h1>Log in</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: sessions_create_url) do |f| %>
+    <%= form_for(:sessions, url: session_create_url) do |f| %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
@@ -14,7 +17,7 @@
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", restaurants_path %></p>
+    <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
   </div>
 </div>
 

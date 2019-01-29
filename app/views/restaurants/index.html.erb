@@ -19,7 +19,7 @@
       <tr>
         <td><%= restaurant.title %></td>
         <td><%= restaurant.description %></td>
-        <td><%= restaurant.User.username %></td>
+        <td><%= restaurant.user.username %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.telephone %></td>
 <% if logged? && admin? %>
@@ -43,7 +43,7 @@
 <br>
 
 
-#if logged in and restaurant teu
+
 <% if logged? %>
 
 <%= link_to 'New Restaurant', new_restaurant_path %>

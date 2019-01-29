@@ -26,7 +26,7 @@ module ApplicationHelper
 
 
     def nameRes(restaurant)
-        if session[:username] == restaurant.User.username
+        if session[:username] == restaurant.user.username
             return true
         else
             return false

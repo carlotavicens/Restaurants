@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  protect_from_forgery
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   # GET /restaurants
@@ -10,6 +11,11 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    session[:restaurant] = @restaurant.title
+  end
+  
+  def search
+    @restaurant = Restaurant.find_by_title(params[:title])
   end
 
   # GET /restaurants/new

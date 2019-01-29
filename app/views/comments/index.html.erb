@@ -16,19 +16,18 @@
  
  <% @comments.each do |comment| %>
   <tr>
-  <td><%= comment.title %></td>
-  <td><%= comment.text %></td>
-  <td><%= comment.score %></td>
-  <td><%= comment.User.username %></td>
-  <td><%= comment.Restaurant.title %></td>
-   <% if logged? && admin? %>
-   <td><%= link_to 'Show', comment %></td>
-   <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-   <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= comment.title %></td>
+    <td><%= comment.text %></td>
+    <td><%= comment.score %></td>
+    <td><%= comment.User.username %></td>
+    <td><%= comment.Restaurant.title %></td>
+    <% if logged? && admin? %>
+      <td><%= link_to 'Show', comment %></td>
+      <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+      <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     <% end %>
+  </tr>
  <% end %>
-   
-      </tr>
-    <% end %>
   </tbody>
 </table> 
 <br>
