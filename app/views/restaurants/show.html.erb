@@ -12,7 +12,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @restaurant.user %>
+  <%= @restaurant.user.username %>
 </p>
 
 <p>
@@ -25,5 +25,37 @@
   <%= @restaurant.telephone %>
 </p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<p>
+  <strong>Comentaris:</strong>
+</p>
+<table>
+  <tbody>
+    <% @restaurant.Comments.each  do |comment| %>
+    <tr>
+      <td>
+        <p>
+          <strong>Titol</strong>
+        </p>
+        <%= comment.title %>
+      </td>
+      <td>
+        <p>
+          <strong>Text</strong>
+        </p>
+        <%= comment.text %>
+      </td>
+      <td>
+        <p>
+          <strong>Puntuacio</strong>
+        </p>
+        <%= comment.score %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+
+  <br>
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%= link_to 'Back', restaurants_path %>
+<%= link_to 'New Comment', new_comment_path(@restaurant) %>

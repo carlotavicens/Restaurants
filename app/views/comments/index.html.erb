@@ -25,14 +25,13 @@
       <td><%= link_to 'Show', comment %></td>
       <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
       <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-     <% end %>
+    <% end %>
   </tr>
- <% end %>
+  <% end %>
   </tbody>
 </table> 
 <br>
 
-<%= link_to 'Go to Users', users_path %>
 
-<br>
+<%= link_to 'Go to Users', users_path %>
 <%= link_to 'Go to Restaurants', restaurants_path %>

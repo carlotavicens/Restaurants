@@ -3,16 +3,15 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   # GET /restaurants
-  # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
   end
 
   # GET /restaurants/1
-  # GET /restaurants/1.json
   def show
     session[:restaurant] = @restaurant.title
   end
+  
   
   def search
     @restaurant = Restaurant.find_by_title(params[:title])
@@ -28,11 +27,9 @@ class RestaurantsController < ApplicationController
   end
 
   # POST /restaurants
-  # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user=Session.session
-    #@restaurant.user= User.first()
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
@@ -45,7 +42,6 @@ class RestaurantsController < ApplicationController
   end
 
   # PATCH/PUT /restaurants/1
-  # PATCH/PUT /restaurants/1.json
   def update
     respond_to do |format|
       if @restaurant.update(restaurant_params)
@@ -59,7 +55,6 @@ class RestaurantsController < ApplicationController
   end
 
   # DELETE /restaurants/1
-  # DELETE /restaurants/1.json
   def destroy
     @restaurant.destroy
     respond_to do |format|

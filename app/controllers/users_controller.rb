@@ -3,13 +3,11 @@ class UsersController < ApplicationController
   before_action  :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
   end
 
@@ -38,7 +36,6 @@ end
 
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -52,7 +49,6 @@ end
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|

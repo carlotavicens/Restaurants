@@ -22,35 +22,27 @@
         <td><%= restaurant.user.username %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.telephone %></td>
-<% if logged? && admin? %>
-
-        <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-<td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-<% elsif  logged?  && nameRes(restaurant) %>
-<td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-<td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% else %>
-<% end %>
-
-      </tr>
-
+        <% if logged? && admin? %>
+          <td><%= link_to 'Show', restaurant %></td>
+          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+          <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif  logged?  && nameRes(restaurant) %>
+          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+          <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+        <% end %>
+       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-
-
 <% if logged? %>
-
-<%= link_to 'New Restaurant', new_restaurant_path %>
-<% else %>
-  
+  <%= link_to 'New Restaurant', new_restaurant_path %>
 <% end %>
 
+
+<br>
 <%= link_to 'Go to users', users_path %>
 <%= link_to 'Go to comments', comments_path %>
 
